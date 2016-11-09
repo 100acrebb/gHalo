@@ -828,9 +828,12 @@ table.insert(Gamemodes,
 		"halo_ascension_fix3",
 	},
 	GameType = "kingofthehill",
+
+	-- Meta data
 	MoveEveryPoint = 10,
 	PointsOnTouch = 1,
 	TouchWait = 2,
+
 	-- If !IsTeam, randomly pick one of these
 	Models = AllPlayerModels,
 
@@ -1124,6 +1127,8 @@ table.insert(Gamemodes,
 		"halo_ascension_fix3",
 	},
 	GameType = "kingofthehill",
+
+	-- Meta data
 	MoveEveryPoint = 10,
 	PointsOnTouch = 1,
 	TouchWait = 2,
