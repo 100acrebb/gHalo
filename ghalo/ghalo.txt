@@ -1,0 +1,21 @@
+
+"Gamemode"
+{
+	"base"			"base"
+	"title"			"Halo: GMod Edition"
+	"maps"			"^halo_"
+	"menusystem"	"0"
+	"workshopid"	""
+
+	"settings"
+	{
+		1
+		{
+			"name"		"ex_test"
+			"text"		"Test"
+			"help"		"Testing"
+			"type"		"numeric"
+			"default"	"1"
+		}
+	}
+}
