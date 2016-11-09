@@ -100,7 +100,7 @@ end)
 
 concommand.Add("cgm", function(ply, cmd, args)
 	if IsValid(ply) and ply:IsPlayer() and (ply:IsAdmin() or ply:IsSuperAdmin()) then
-		ResetGamemode(tonumber(args[1]))
+		ResetGametype(tonumber(args[1]))
 	end
 end)
 

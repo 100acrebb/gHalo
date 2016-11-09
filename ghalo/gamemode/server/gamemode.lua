@@ -639,7 +639,7 @@ local function WinGTHook(top, topID, teamWon)
 	if !CurGT.ShouldWin(topID, top + CurGT.PointsOnWin, teamWon) then
 		ResetGametype(CurrentGametype, true)
 	else
-		timer.Simple(ServerOptions.RoundResetLength, ResetGametype)
+		timer.Simple(ServerOptions.VotingLength + ServerOptions.RoundResetLength, ResetGametype)
 		EndGametype()
 	end
 end
@@ -669,7 +669,7 @@ function Win(teamIDorPly)
 	if CurGT.ShouldWin then
 		WinGTHook(top, topID, teamWon)
 	else
-		timer.Simple(ServerOptions.RoundResetLength + ServerOptions.VotingLength, ResetGametype)
+		timer.Simple(ServerOptions.VotingLength + ServerOptions.RoundResetLength, ResetGametype)
 		EndGametype()
 	end
 end
@@ -686,7 +686,7 @@ function EndGametype()
 		ply:SetNWInt("roundActive", GMData["roundActive"])
 	end
 
-	timer.Simple(ServerOptions.RoundResetLength - ServerOptions.VotingLength, MapVoting)
+	timer.Simple(ServerOptions.RoundResetLength, MapVoting)
 end
 
 local function NetworkVotingData()
