@@ -4,7 +4,7 @@ GM.Author = "Vader"
 GM.Email = "NA"
 GM.Website = "NA"
 
-DeriveGamemode( "sandbox" )
+-- DeriveGamemode( "sandbox" )
 
 -- local oldPrint = print
 -- local function print(s)
