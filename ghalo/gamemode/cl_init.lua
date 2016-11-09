@@ -13,6 +13,14 @@ include("cl/cl_scoreboard.lua")
 include("cl/cl_deathnotice.lua")
 include("database/cl_database.lua")
 
+function GM:PostDrawViewModel( vm, ply, weapon )
+	-- I didn't write this code, Joke did.
+	if ( weapon.UseHands || !weapon:IsScripted() ) then
+		local hands = LocalPlayer():GetHands()
+		if ( IsValid( hands ) ) then hands:DrawModel() end
+	end
+end
+
 function RecieveChatText( um )
 	local r = um:ReadShort()
 	local g = um:ReadShort()
