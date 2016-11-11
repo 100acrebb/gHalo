@@ -4,7 +4,7 @@
 	"base"			"base"
 	"title"			"Halo: GMod Edition"
 	"maps"			"^halo_"
-	"menusystem"	"0"
+	"menusystem"	"1"
 	"workshopid"	""
 
 	"settings"
