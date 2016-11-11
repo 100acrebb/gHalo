@@ -22,6 +22,11 @@ local CustomFontE = surface.CreateFont("CustomFontE", {
 	size = 40
 })
 
+local CustomFontF = surface.CreateFont("CustomFontF", {
+	font = "Arial",
+	size = 24
+})
+
 -- Animation variables
 local shieldRegenAnimationRateUp = 0.25
 local shieldRegenAnimationRateDown = 4
@@ -611,6 +616,7 @@ end
 local votedForOption = -1
 local drawAgain = true
 optionList = nil
+statsList = nil
 EndRoundDerma = nil
 EndRoundMessageDerma = nil
 EndRoundBgDerma = nil
@@ -702,11 +708,26 @@ function DrawVotes(i, x, y)
 	local votingChoiceVotes = LocalPlayer():GetNWInt("choice" .. i .. "Votes")
 	draw.SimpleText(votingChoiceVotes, "CustomFontD", x, y, Color(200, 220, 240, 255), TEXT_ALIGN_RIGHT)
 end
-	
+
+local function GetHighestMedal()
+	local highest = 1
+	local score = -1
+
+	if #EarnedMedals > 0 then
+		for k, v in pairs(EarnedMedals) do
+			if v >= score then
+				highest = k
+			end
+		end
+	end
+
+	print("Returning: " .. highest .. " with a score of " .. score)
+
+	return highest
+end
+
 function DrawRoundEndScreen()
 	-- drawAgain = true
-
-	print(util.TableToKeyValues(EarnedMedals))
 
 	draw.RoundedBox(
 		0,
@@ -717,7 +738,7 @@ function DrawRoundEndScreen()
 		Color(11, 11, 11, 255)
 	)
 
-	if !IsValid(EndRoundDerma) or !IsValid(optionList) then
+	if !IsValid(EndRoundDerma) or !IsValid(optionList) or !IsValid(statsList) then
 		DrawBackground()
 
 		EndRoundMessageDerma = vgui.Create("DFrame")
@@ -759,6 +780,153 @@ function DrawRoundEndScreen()
 		optionList:SetAlpha(0)
 		optionList:AlphaTo(255, FadeInTime, 0)
 		optionList:AlphaTo(0, FadeOutTime, 20)
+
+		statsList = vgui.Create("DFrame")
+		statsList:SetTitle("")
+		statsList:ShowCloseButton(false)
+		statsList:SetPos(info.voting.x + 15, info.voting.y - 185)
+		statsList:SetSize(info.voting.width - 15, 200)
+
+		local mID = GetHighestMedal()
+
+		local medal = Medals[mID]
+		local medalCount = EarnedMedals[mID]
+
+		local tKills = databaseGetValue("kills")
+		local tDeaths = databaseGetValue("deaths")
+
+		statsList.Paint = function(self, w, h)
+			color = Color(200, 220, 240, 255)
+
+			draw.RoundedBox(
+				5, 0, 0, w, h, Color(11, 11, 11, 150)
+			)
+
+			draw.RoundedBox(
+				5, 5, 5, w - 10, h - 10, Color(11, 11, 11, 150)
+			)
+
+			-- Total kills
+			draw.SimpleText(
+				"Total Kills",
+				"CustomFontF",
+				80,
+				15,
+				color,
+				TEXT_ALIGN_CENTER
+			)
+			draw.SimpleText(
+				tKills,
+				"CustomFontF",
+				80,
+				50,
+				color,
+				TEXT_ALIGN_CENTER
+			)
+
+			-- Total Deaths
+			draw.SimpleText(
+				"Total Deaths",
+				"CustomFontF",
+				250,
+				15,
+				color,
+				TEXT_ALIGN_CENTER
+			)
+
+			draw.SimpleText(
+				tDeaths,
+				"CustomFontF",
+				250,
+				50,
+				color,
+				TEXT_ALIGN_CENTER
+			)
+
+			-- Total Deaths
+			draw.SimpleText(
+				"Kill to Death",
+				"CustomFontF",
+				420,
+				15,
+				color,
+				TEXT_ALIGN_CENTER
+			)
+
+			draw.SimpleText(
+				(tKills * 1.0) / tDeaths,
+				"CustomFontF",
+				420,
+				50,
+				color,
+				TEXT_ALIGN_CENTER
+			)
+
+			-- Most Medal
+			draw.SimpleText(
+				"Most Medals",
+				"CustomFontF",
+				w - 90,
+				15,
+				color,
+				TEXT_ALIGN_CENTER
+			)
+
+			if medalCount and medalCount > 0 then
+				draw.SimpleText(
+					medalCount,
+					"CustomFontF",
+					w - 90,
+					120,
+					color,
+					TEXT_ALIGN_CENTER
+				)
+
+				draw.SimpleText(
+					medal.Name,
+					"CustomFontF",
+					w - 90,
+					150,
+					color,
+					TEXT_ALIGN_CENTER
+				)
+			end
+
+			-- Experience
+			local exp = LocalPlayer():GetNWInt("xp")
+			local bar = exp % 100
+			local level = math.floor(exp / 100)
+
+			-- draw.RoundedBox(
+			-- 	1, 0, h / 2, w - 175, h, Color(11, 11, 11)
+			-- )
+
+			-- Total kills
+			draw.SimpleText(
+				"Level: " .. level,
+				"CustomFontF",
+				35,
+				h / 2 + 15,
+				color,
+				TEXT_ALIGN_LEFT
+			)
+
+			draw.RoundedBox(
+				1, 35, h - 40, 400, 25, Color(99, 99, 99, 200)
+			)
+
+			draw.RoundedBox(
+				1, 35, h - 40, 400 * (bar / 100.0), 25, color
+			)
+		end
+
+		if medalCount and medalCount > 0 then
+			-- Most Medals -- EarnedMedals
+			local slotImage = vgui.Create("DImage", statsList)
+			slotImage:SetPos(info.voting.width - 127, 55)
+			slotImage:SetSize(50, 50)
+			slotImage:SetImage("materials/vgui/medals/" .. medal.image .. ".png", "vgui/avatar_default")
+		end
 
 		HideScoreBoard()
 		ShowScoreBoard(ScrW() - 500 - 30)
@@ -877,7 +1045,11 @@ function DrawGametypePopup(gameType)
 			color = gmSettings.Teams[ply:Team()].Color
 		else
 			local mods = gmSettings.Models
-			color = mods[ply:GetNWInt("Color")][2]
+			if mods and mods[ply:GetNWInt("Color")] then
+				color = mods[ply:GetNWInt("Color")][2]
+			else
+				color = Color(120, 35, 33)
+			end
 		end
 
 		color.a = 255
@@ -1021,6 +1193,8 @@ function DrawHud()
 			EndRoundDerma:Close()
 			EndRoundDerma = nil
 			optionList = nil
+			statsList:Close()
+			statsList = nil
 			votedForOption = -1
 			drawAgain = true
 			EndRoundBgDerma:Close()
@@ -1030,6 +1204,7 @@ function DrawHud()
 			EndRoundBgAnimDerma2:Close()
 			EndRoundBgAnimDerma2 = nil
 			HideScoreBoard()
+			EarnedMedals = {}
 		end
 
 		DrawHealth()
@@ -1054,6 +1229,8 @@ function DrawHud()
 				EndRoundDerma:Close()
 				EndRoundDerma = nil
 				optionList = nil
+				statsList:Close()
+				statsList = nil
 				votedForOption = -1
 				drawAgain = true
 				EndRoundBgDerma:Close()

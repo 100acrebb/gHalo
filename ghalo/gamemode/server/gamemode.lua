@@ -576,6 +576,10 @@ local function TeamWin(teamID)
 				Color(255, 200, 0)
 			)
 		else
+			for k, v in team.GetPlayers(topID) do
+				v:databaseChangeValue("xp", 100)
+			end
+
 			MessageAllPlayers(
 				CurGT.Teams[topID].Name .. " team has won! Starting again in 10 seconds!",
 				Color(255, 200, 0)
@@ -584,6 +588,10 @@ local function TeamWin(teamID)
 	else
 		topID = teamID
 		top = GetTeamData(teamID, "Score")
+
+		for k, v in team.GetPlayers(topID) do
+			v:databaseChangeValue("xp", 100)
+		end
 
 		MessageAllPlayers(
 			CurGT.Teams[teamID].Name .. " team has won! Starting again in 10 seconds!",
@@ -610,6 +618,8 @@ local function PlayerWin(ply)
 			)
 		else
 			print("Player " .. topPly:GetName() .. " has won!!")
+			topPly:databaseChangeValue("xp", 100)
+			
 			MessageAllPlayers(
 				topPly:GetName() .. " has won!! Starting again in 10 seconds!",
 				Color(255, 200, 0)
@@ -618,6 +628,8 @@ local function PlayerWin(ply)
 	else
 		if winningPly and IsValid(winningPly) then
 			print("Player " .. winningPly:GetName() .. " has won!!")
+			winningPly:databaseChangeValue("xp", 100)
+
 			MessageAllPlayers(
 				winningPly:GetName() .. " has won!! Starting again in 10 seconds!",
 				Color(255, 200, 0)
@@ -860,6 +872,8 @@ end
 
 function SendMTS(id, ply)
 	if id > 0 then
+		ply:databaseChangeValue("xp", 5)
+
 		umsg.Start("Medal", ply)
 			umsg.Short(id)
 		umsg.End()
@@ -869,6 +883,10 @@ end
 function GM:PlayerDeath(victim, inflictor, attacker)
 	-- Make sure victim and attacker are real
 	if IsValid(victim) and IsValid(attacker) and victim:IsPlayer() and attacker:IsPlayer() then
+		victim:databaseChangeValue("deaths", 1)
+		attacker:databaseChangeValue("kills", 1)
+		attacker:databaseChangeValue("xp", 10)
+
 		if !attacker:Alive() then
 			local mts = 36
 			SendMTS(mts)

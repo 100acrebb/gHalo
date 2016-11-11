@@ -80,5 +80,5 @@ ServerOptions = {
 	InactiveRoundTime = 15,
 	DefaultGT = 11,
 	RoundResetLength = 5,
-	VotingLength = 20
+	VotingLength = 26
 }

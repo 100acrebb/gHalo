@@ -40,7 +40,7 @@ function GM:Initialize()
 end
 
 function GM:PlayerConnect(name, ip)
-	print("Player: " .. name .. " has joined.")
+	-- print("Player: " .. name .. " has joined.")
 	MessageAllPlayers(name .. " has joined the game!")
 end
 
@@ -50,11 +50,12 @@ function GM:PlayerDisconnected(ply)
 end
 
 function GM:PlayerAuthed(ply, steamID, uniqueID)
-	print("Player: " .. ply:Nick() .. " has authed.")
+	-- print("Player: " .. ply:Nick() .. " has authed.")
+	ply:databaseCheck()
 end
 
 function GM:PlayerInitialSpawn(ply)
-	print("Player: " .. ply:Nick() .. " has spawned on team: " .. ply:Team())
+	-- print("Player: " .. ply:Nick() .. " has spawned on team: " .. ply:Team())
 	MessageAllPlayers(ply:Nick() .. " has joined the battle!")
 
 	ply:databaseCheck()
@@ -101,7 +102,7 @@ local function AddHands(ply)
 end
 
 function GM:PlayerSpawn(ply)
-	print("Player spawning... on team " .. ply:Team())
+	-- print("Player spawning... on team " .. ply:Team())
 	ply:Spawned()
 	AddHands(ply)
 end

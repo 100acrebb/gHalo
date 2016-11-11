@@ -153,11 +153,14 @@ function ShowScoreBoard(x, y)
 					tempColor = sModels[mod][2]
 				end
 
+				local exp = v:GetNWInt("xp")
+				local level = math.floor(exp / 100)
+
 				local playerPanel = vgui.Create("DPanel", playerList)
 				playerPanel.myColor = tempColor
 				playerPanel:SetSize(playerList:GetWide(), 30)
 				playerPanel:SetPos(0, 0)
-				playerPanel.rank = playerRank
+				playerPanel.rank = level
 				playerPanel.Paint = function()
 					draw.RoundedBox(2, 0, 3, 60, playerPanel:GetTall() - 3, playerPanel.myColor)
 					draw.RoundedBox(2, 65, 3, playerPanel:GetWide() - 145, playerPanel:GetTall() - 3, playerPanel.myColor)

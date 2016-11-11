@@ -6,6 +6,15 @@
 
 ## Changes ##
 
+### Version 1.0.3 ###
+
+* Added ranks
+* Voting screen shows total server kills, deaths, level, xp and highest earned medal.
+
+### Version 1.0.2 ###
+
+* Made selectable from main menu
+
 ### Version 1.0.1 ###
 
 * cgm now works again

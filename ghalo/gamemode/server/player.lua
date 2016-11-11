@@ -189,7 +189,7 @@ end
 
 function player:SetShield(amount)
 	self.shield = amount
-	print("Set shields to: " .. amount)
+	-- print("Set shields to: " .. amount)
 	self:SetNWInt("Shield", self.shield)
 end
 

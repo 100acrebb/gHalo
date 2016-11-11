@@ -17,26 +17,22 @@ local function print(s)
 end
 
 function player:databaseDefault()
-	self:databaseSetValue("money", 100)
+	self:databaseSetValue("credits", 100)
 	self:databaseSetValue("xp", 0)
-	self:databaseSetValue("hunger", 0)
-	local i = {}
-	i["soda1"] = {amount = 10}
-	i["soda2"] = {amount = 10}
-	self:databaseSetValue("inventory", i)
+	self:databaseSetValue("kills", 0)
+	self:databaseSetValue("deaths", 0)
+	-- local i = {}
+	-- i["soda1"] = {amount = 10}
+	-- i["soda2"] = {amount = 10}
+	-- self:databaseSetValue("inventory", i)
 end
 
-function player:databaaseNetworkedData()
-	local money = self:databaseGetValue("money")
+function player:databaseNetworkedData()
+	local money = self:databaseGetValue("credits")
 	local xp = self:databaseGetValue("xp")
-	local hunger = self:databaseGetValue("hunger")
 
-	self:SetNWInt("money", money)
+	self:SetNWInt("credits", money)
 	self:SetNWInt("xp", xp)
-	self:SetNWInt("hunger", hunger)
-
-	self:KillSilent()
-	self:Spawn()
 end
 
 function player:databaseFolders()
@@ -65,14 +61,13 @@ function player:databaseCheck()
 	end
 
 	self:databaseSend()
-	self:databaaseNetworkedData()
+	self:databaseNetworkedData()
 end
 
 function player:databaseSend()
 	net.Start("database")
 	net.WriteTable(self:databaseGet())
 	net.Send(self)
-	print("Sent database")
 end
 
 function player:databaseExists()
@@ -94,7 +89,6 @@ end
 function player:databaseCreate()
 	self:databaseDefault()
 	local b = file.CreateDir(self:databaseFolders())
-	print("Creating database.")
 	self:databaseSave()
 end
 
@@ -116,13 +110,24 @@ function player:databaseSetValue(name, v)
 	end
 
 	local d = self:databaseGet()
+
 	d[name] = v
 
 	self:databaseSave()
 end
 
+function player:databaseChangeValue(name, v)
+	self:databaseSetValue(name, v + self:databaseGetValue(name))
+end
+
 function player:databaseGetValue(name)
 	local d = self:databaseGet()
+	
+	if not d[name] then
+		d[name] = 0
+		self:databaseSave()
+	end
+
 	return d[name]
 end
 
