@@ -712,7 +712,7 @@ table.insert(Gamemodes,
 			Color = Colors.Blue,
 			Model = "models/player/lordvipes/h2_elite/eliteplayer.mdl",
 			Health = 100,
-			Shield = 300,
+			Shield = 200,
 			ShieldRechargeWait = 5,
 			ShieldRechargeRate = 10,
 			RespawnTime = 5,
@@ -756,7 +756,7 @@ table.insert(Gamemodes,
 
 		local humanTeam = team.GetPlayers(1)
 
-		if #humanTeam <= 1 then
+		if attacker:Team() == 2 and #humanTeam <= 1 then
 			if #humanTeam == 1 then
 				MessageAllPlayers(
 					humanTeam[1]:GetName() .. " is the last man standing!",

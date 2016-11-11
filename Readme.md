@@ -6,6 +6,13 @@
 
 ## Changes ##
 
+### Version 1.0.5 ###
+
+* Added vehicles!
+* Reduced starting round timer from 15s to 10s.
+* Infection: Only says last man standing once.
+* Infection: Reduced zombie shields from 300% to 200%.
+
 ### Version 1.0.4.1 ###
 
 * Wrote 'attack' instead of 'attacker'

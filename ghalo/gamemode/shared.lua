@@ -77,7 +77,7 @@ ServerOptions = {
 	MaxBots = 4,
 	-- Timelimit * seconds
 	Seconds = 60,
-	InactiveRoundTime = 15,
+	InactiveRoundTime = 10,
 	DefaultGT = 11,
 	RoundResetLength = 5,
 	VotingLength = 26

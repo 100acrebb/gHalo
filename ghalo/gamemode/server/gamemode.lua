@@ -372,7 +372,7 @@ local function SpawnWeapons()
 			if !CurWeps[k] then
 				local entClass = v.name
 
-				local ent = ents.Create(entClass)
+				ent = ents.Create(entClass)
 
 				if v.mat then
 					ent:SetMaterial(v.mat)
@@ -387,7 +387,7 @@ local function SpawnWeapons()
 					local phy = ent:GetPhysicsObject()
 
 					if phy and IsValid(phy) then
-						phy:EnableMotion(false)
+						if not v.v then phy:EnableMotion(false) end
 					end
 				end
 

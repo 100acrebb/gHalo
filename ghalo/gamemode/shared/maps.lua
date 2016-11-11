@@ -56,6 +56,15 @@ MapData = {
 				{pos = Vector(1408, 5132, 573), ang = Angle(0, -94, 90), name = "h3_smg_swep"},
 				{pos = Vector(-3009, 4055, 445), ang = Angle(0, -75, 90), name = "h3_shotgun"},
 				{pos = Vector(-2025, -1769, -16), ang = Angle(0, 8, 90), name = "h3_shotgun"},
+			
+				-- Vehicles
+		        {pos = Vector(-927, -3226, 285), ang = Angle(0, 95, 0), v = true, name = "sent_sakarias_car_m274h3"},
+		        {pos = Vector(1772, -3356, 287), ang = Angle(0, 88, 0), v = true, name = "sent_sakarias_car_m12lrvh3"},
+		        {pos = Vector(1, -1, 573), ang = Angle(0, 91, 0), v = true, name = "wac_hc_hornet"},
+		        {pos = Vector(-1631, 1751, 229), ang = Angle(0, -3, 0), v = true, name = "sent_sakarias_car_m274h3"},
+		        {pos = Vector(-10, 5130, 749), ang = Angle(0, 89, 0), v = true, name = "sent_sakarias_car_m12g1rch"},
+		        {pos = Vector(1528, 4967, 573), ang = Angle(0, -93, 0), v = true, name = "sent_sakarias_car_m274h3"},
+		        {pos = Vector(4254, 2934, 93), ang = Angle(0, -173, 0), v = true, name = "sent_sakarias_car_m12lrvh3"},
 			}
 		}
 	},
@@ -90,6 +99,15 @@ MapData = {
 		        {pos = Vector(-3579, -3467, 1847), ang = Angle(0, 36, 90), name = "h3_br_swep"},
 		        {pos = Vector(-1210, -4395, 2322), ang = Angle(0, 19, 90), name = "h3_smg_swep_odst"},
 		        {pos = Vector(-1003, -5832, 2232), ang = Angle(0, 47, 90), name = "h3_sr_swep"},
+			
+		        -- Vehicles
+		        {pos = Vector(3424, -5924, 1722), ang = Angle(0, 2, 0), v = true, name = "wac_hc_falcon"},
+		        {pos = Vector(4941, -4178, 1521), ang = Angle(0, 174, 0), v = true, name = "sent_sakarias_car_m12lrvh3"},
+		        {pos = Vector(1774, -6608, 1533), ang = Angle(0, 83, 0), v = true, name = "sent_sakarias_car_m274h3"},
+		        {pos = Vector(-3956, 5663, 1702), ang = Angle(0, 175, 0), v = true, name = "wac_hc_falcon"},
+		        {pos = Vector(-6016, 5555, 1548), ang = Angle(0, -69, 0), v = true, name = "sent_sakarias_car_m12lrvh3"},
+		        {pos = Vector(-4600, 7456, 1643), ang = Angle(0, -76, 0), v = true, name = "sent_sakarias_car_m274h3"},
+
 			}
 		},
 	},
@@ -144,6 +162,12 @@ MapData = {
 		        {pos = Vector(1168, 1537, 197), ang = Angle(0, -117, 90), name = "h3_magnum_swep"},
 		        {pos = Vector(473, 818, 61), ang = Angle(0, -112, 90), name = "h3_smg_swep_odst"},
 		        {pos = Vector(-980, 428, 61), ang = Angle(0, -45, 90), name = "h3_odst_socom"},
+			
+		        -- Vehicles
+		        {pos = Vector(-644, 756, 61), ang = Angle(0, -91, 0), v = true, name = "sent_sakarias_car_m12rrch"},
+		        {pos = Vector(-1188, -290, 61), ang = Angle(0, -32, 0), nv = true, ame = "sent_sakarias_car_m12lrvh3"},
+		        {pos = Vector(778, -1663, 61), ang = Angle(0, 123, 0), v = true, name = "sent_sakarias_car_m274h3"},
+		        {pos = Vector(548, 680, 61), ang = Angle(0, -93, 0), v = true, name = "sent_sakarias_car_civhog"},
 			}
 		}
 	},
@@ -302,6 +326,11 @@ MapData = {
 		        {pos = Vector(-878, 774, -2639), ang = Angle(0, -42, 90), name = "h3_br_swep"},
 		        {pos = Vector(220, 856, -2593), ang = Angle(0, 2, 90), name = "h3_smg_swep"},
 		        {pos = Vector(1261, 91, -2754), ang = Angle(0, -171, 90), name = "h3_shotgun"},
+			
+		        -- Vehicles
+		        {pos = Vector(1892, 1256, -2754), ang = Angle(0, -95, 0), v = true, name = "sent_sakarias_car_m12lrvh3"},
+		        {pos = Vector(1419, -934, -2900), ang = Angle(0, 163, 0), v = true, name = "sent_sakarias_car_m274h3"},
+		        {pos = Vector(-1267, -1691, -2909), ang = Angle(0, 71, 0), v = true, name = "sent_sakarias_car_m274h3"},
 			}
 		}
 	}
