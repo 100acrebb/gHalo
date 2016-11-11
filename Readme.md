@@ -6,6 +6,11 @@
 
 ## Changes ##
 
+### Version 1.0.4.1 ###
+
+* Wrote 'attack' instead of 'attacker'
+* Highest medal sort didn't save score of last highest, returning the highest id instead of count.
+
 ### Version 1.0.4 ###
 
 * Fixed issue with error when a player leaves (hopefully)

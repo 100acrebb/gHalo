@@ -717,6 +717,7 @@ local function GetHighestMedal()
 		for k, v in pairs(EarnedMedals) do
 			if v >= score then
 				highest = k
+				score = v
 			end
 		end
 	end
