@@ -576,7 +576,7 @@ local function TeamWin(teamID)
 				Color(255, 200, 0)
 			)
 		else
-			for k, v in team.GetPlayers(topID) do
+			for k, v in pairs(team.GetPlayers(topID)) do
 				v:databaseChangeValue("xp", 100)
 			end
 
@@ -589,7 +589,7 @@ local function TeamWin(teamID)
 		topID = teamID
 		top = GetTeamData(teamID, "Score")
 
-		for k, v in team.GetPlayers(topID) do
+		for k, v in pairs(team.GetPlayers(topID)) do
 			v:databaseChangeValue("xp", 100)
 		end
 
@@ -619,7 +619,7 @@ local function PlayerWin(ply)
 		else
 			print("Player " .. topPly:GetName() .. " has won!!")
 			topPly:databaseChangeValue("xp", 100)
-			
+
 			MessageAllPlayers(
 				topPly:GetName() .. " has won!! Starting again in 10 seconds!",
 				Color(255, 200, 0)
