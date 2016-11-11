@@ -6,6 +6,12 @@
 
 ## Changes ##
 
+### Version 1.0.4 ###
+
+* Fixed issue with error when a player leaves (hopefully)
+* Rounds KD to 2 decimal places
+* Adds commas to total kills, deaths, and ranks.
+
 ### Version 1.0.3 ###
 
 * Added ranks

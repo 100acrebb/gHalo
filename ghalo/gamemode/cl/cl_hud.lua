@@ -816,7 +816,7 @@ function DrawRoundEndScreen()
 				TEXT_ALIGN_CENTER
 			)
 			draw.SimpleText(
-				tKills,
+				comma_value(tKills),
 				"CustomFontF",
 				80,
 				50,
@@ -835,7 +835,7 @@ function DrawRoundEndScreen()
 			)
 
 			draw.SimpleText(
-				tDeaths,
+				comma_value(tDeaths),
 				"CustomFontF",
 				250,
 				50,
@@ -854,7 +854,7 @@ function DrawRoundEndScreen()
 			)
 
 			draw.SimpleText(
-				(tKills * 1.0) / tDeaths,
+				round((tKills * 1.0) / tDeaths, 2),
 				"CustomFontF",
 				420,
 				50,
@@ -874,7 +874,7 @@ function DrawRoundEndScreen()
 
 			if medalCount and medalCount > 0 then
 				draw.SimpleText(
-					medalCount,
+					comma_value(medalCount),
 					"CustomFontF",
 					w - 90,
 					120,

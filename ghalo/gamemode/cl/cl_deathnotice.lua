@@ -51,39 +51,41 @@ function drawDeathNotice(victim, attacker)
 
 				local msgColor = Color(255, 255, 255)
 
-				if attacker:Team() and sIsTeam then
-					msgColor = aTeam.Color
-				end
-
-				local killMessage = victim:GetName() .. " was killed by " .. attacker:GetName()
-
-				if victim == attacker and attacker == LocalPlayer() then
-					killMessage = "You killed yourself!"
-				elseif victm == attacker then
-					killMessage = victim:GetName() .. " killed themselves"
-				elseif victim == LocalPlayer() then
-					if sIsTeam and victim:Team() == attacker:Team() then
-						killMessage = "You were killed by your teammate " .. attacker:GetName()
-						msgColor = Color(155, 89, 182)
-					else
-						killMessage = "You were killed by " .. attacker:GetName()
-						msgColor = Color(255, 255, 255)
+				if attacker and IsValid(attack) then
+					if attacker:Team() and sIsTeam then
+						msgColor = aTeam.Color
 					end
-				elseif attacker == LocalPlayer() then
-					killMessage = "You killed " .. victim:GetName()
-					if sIsTeam and victim:Team() == attacker:Team() then
-						killMessage = "You killed your teammate " .. victim:GetName()
-						msgColor = Color(155, 89, 182)
-					else
+
+					local killMessage = victim:GetName() .. " was killed by " .. attacker:GetName()
+
+					if victim == attacker and attacker == LocalPlayer() then
+						killMessage = "You killed yourself!"
+					elseif victm == attacker then
+						killMessage = victim:GetName() .. " killed themselves"
+					elseif victim == LocalPlayer() then
+						if sIsTeam and victim:Team() == attacker:Team() then
+							killMessage = "You were killed by your teammate " .. attacker:GetName()
+							msgColor = Color(155, 89, 182)
+						else
+							killMessage = "You were killed by " .. attacker:GetName()
+							msgColor = Color(255, 255, 255)
+						end
+					elseif attacker == LocalPlayer() then
 						killMessage = "You killed " .. victim:GetName()
-						msgColor = Color(46, 204, 113)
+						if sIsTeam and victim:Team() == attacker:Team() then
+							killMessage = "You killed your teammate " .. victim:GetName()
+							msgColor = Color(155, 89, 182)
+						else
+							killMessage = "You killed " .. victim:GetName()
+							msgColor = Color(46, 204, 113)
+						end
+					elseif sIsTeam and victim:Team() == attacker:Team() then
+						killMessage = victim:GetName() .. " was killed by their teammate " .. attacker:GetName()
+						msgColor = Color(155, 89, 182)
 					end
-				elseif sIsTeam and victim:Team() == attacker:Team() then
-					killMessage = victim:GetName() .. " was killed by their teammate " .. attacker:GetName()
-					msgColor = Color(155, 89, 182)
-				end
 
-				draw.SimpleText(killMessage, "CustomFontG", 15, 10, msgColor)
+					draw.SimpleText(killMessage, "CustomFontG", 15, 10, msgColor)
+				end
 			end
 
 			timer.Simple(6, function()
