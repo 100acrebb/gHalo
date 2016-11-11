@@ -51,7 +51,7 @@ function drawDeathNotice(victim, attacker)
 
 				local msgColor = Color(255, 255, 255)
 
-				if attacker and IsValid(attack) then
+				if attacker and IsValid(attacker) then
 					if attacker:Team() and sIsTeam then
 						msgColor = aTeam.Color
 					end
