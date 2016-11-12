@@ -113,6 +113,7 @@ function player:databaseSetValue(name, v)
 
 	d[name] = v
 
+	self:databaseNetworkedData()
 	self:databaseSave()
 end
 

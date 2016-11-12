@@ -112,3 +112,8 @@ function SendSound(string, ply)
 		umsg.String(string)
 	umsg.End()
 end
+
+function GM:ShowSpare1( ply )
+	umsg.Start( "ShowStatsList", ply )
+    umsg.End()
+end

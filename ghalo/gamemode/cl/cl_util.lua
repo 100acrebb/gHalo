@@ -18,3 +18,22 @@ function round(num, idp)
   local mult = 10^(idp or 0)
   return math.floor(num * mult + 0.5) / mult
 end
+
+function GetRank(xp)
+	print("XP: " .. xp)
+	return string.len(tostring(xp)) - 1
+end
+
+function GetProgress(xp)
+	if xp == 0 then
+		xp = 1
+	end
+
+	local equ = (10 ^ (GetRank(xp)))
+
+	local tempa = xp - equ
+	local tempb = (10 ^ (GetRank(xp) + 1)) - equ
+	print("Tempa:".. tempa)
+	print("Tempa:".. tempb)
+	return tempa / tempb * 100
+end

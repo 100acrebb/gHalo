@@ -154,7 +154,7 @@ function ShowScoreBoard(x, y)
 				end
 
 				local exp = v:GetNWInt("xp")
-				local level = math.floor(exp / 100)
+				local level = GetRank(exp)
 
 				local playerPanel = vgui.Create("DPanel", playerList)
 				playerPanel.myColor = tempColor
@@ -231,6 +231,8 @@ function ShowScoreBoard(x, y)
 					playerPanel:SetSize(playerList:GetWide(), 30)
 					playerPanel:SetPos(0, 0)
 					playerPanel.Paint = function()
+						local nameOffset = 0
+
 						draw.RoundedBox(2, 65, 3, playerPanel:GetWide() - 145, playerPanel:GetTall() - 3, Color(33, 33, 33))
 						draw.RoundedBox(2, playerPanel:GetWide() - 75, 3, 75, playerPanel:GetTall() - 3, Color(33, 33, 33))
 
@@ -294,6 +296,7 @@ function ShowScoreBoard(x, y)
 						draw.RoundedBox(2, 65, 3, playerPanel:GetWide() - 145, playerPanel:GetTall() - 3, Color(33, 33, 33))
 						draw.RoundedBox(2, playerPanel:GetWide() - 75, 3, 75, playerPanel:GetTall() - 3, Color(33, 33, 33))
 
+						local nameOffset = 0
 						local tempTextColor = Color(255, 255, 255)
 
 						if roundActive == Rounds.Active and !v:Alive() then

@@ -68,3 +68,16 @@ timer.Simple(4, function()
 	    util.PrecacheSound(v)
 	end
 end)
+
+local function ShowStatsList( ply )
+	print("Loading stats")
+	if statsList then
+		statsList:Close()
+		statsList = nil
+	else
+		DrawStatInfo()
+		statsList:Center()
+	end
+end
+
+usermessage.Hook("ShowStatsList", ShowStatsList)

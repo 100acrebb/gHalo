@@ -6,6 +6,10 @@
 
 ## Changes ##
 
+### Version 1.0.6 ###
+
+* Added F3. Brings up the k, d, kd, and level progess. Same as on voting menu.
+
 ### Version 1.0.5 ###
 
 * Added vehicles!
